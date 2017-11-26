@@ -39,7 +39,7 @@ app.get('/', (req, res) => {
 
 // 注册页链接路由
 app.get('/sign-up', (req, res) => {
-    res.sendFile(path.join(__dirname, '/views/sign-up.html'));
+    res.render('sign-up', {message: null});
 });
 
 // 登录页链接路由
@@ -58,7 +58,7 @@ app.post('/signUp', (req, res) => {
         let sql = 'SELECT * FROM blog.user WHERE username = ?';
         connection.query(sql, [username], (err, results, fields) => {
             if (results.length === 1) {
-                res.sendFile(path.join(__dirname, '/views/sign-up.html'));
+                res.render('sign-up', {message: 'Username already exist.'});
             } else {
                 sql = 'INSERT INTO blog.user VALUE(NULL, ?, ?)';
                 connection.query(sql, [username, encryptedPassword], (err, results, fields) => {
