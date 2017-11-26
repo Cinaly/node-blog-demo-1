@@ -13,11 +13,14 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const bcrypt = require('bcryptjs');
+const ejs = require('ejs');
 
 let app = express();
 
 // 配置中间件
 app.use(bodyParser.urlencoded({extended: true}));
+app.engine('.html', ejs.__express);
+app.set('view engine', 'html');
 
 // 创建数据库连接池
 let pool = mysql.createPool({
@@ -26,6 +29,10 @@ let pool = mysql.createPool({
 });
 
 // 根目录路由
+app.get('/test', (req, res) => {
+    res.render('test', {name: 'test...'});
+});
+
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '/views/default.html'));
 });
