@@ -45,13 +45,20 @@ app.post('/signUp', (req, res) => {
     let password = req.body.password;
     pool.getConnection((err, connection) => {
         if (err) throw err;
-        let sql = 'INSERT INTO blog.user VALUE(NULL, ?, ?)';
-        connection.query(sql, [username, password], (err, results, fields) => {
-            if (err) throw err;
-            if (results.affectedRows === 1) {
-                res.sendFile(path.join(__dirname, '/views/sign-in.html'));
-            } else {
+        let sql = 'SELECT * FROM blog.user WHERE username = ?';
+        connection.query(sql, [username], (err, results, fields) => {
+            if (results.length === 1) {
                 res.sendFile(path.join(__dirname, '/views/sign-up.html'));
+            } else {
+                sql = 'INSERT INTO blog.user VALUE(NULL, ?, ?)';
+                connection.query(sql, [username, password], (err, results, fields) => {
+                    if (err) throw err;
+                    if (results.affectedRows === 1) {
+                        res.sendFile(path.join(__dirname, '/views/sign-in.html'));
+                    } else {
+                        res.sendFile(path.join(__dirname, '/views/sign-up.html'));
+                    }
+                });
             }
         });
         connection.release();
