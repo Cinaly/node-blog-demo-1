@@ -27,6 +27,7 @@ app.use(session({
 
 require('./routes/default')(app);
 require('./routes/user')(app);
+require('./routes/article')(app);
 
 // 端口
 app.listen(80);

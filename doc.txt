@@ -47,6 +47,11 @@
 36. 使用 session：req.session.key = value;
 37. 注销，修改 index.html，添加注销链接
 38. 修改 user.js，处理注销的 get 请求：req.session.destroy();
+39. 创建数据库表 article，博文表
+40. 修改 views/index.html，添加发布博文的表单
+41. 创建 routes/article.js 文件，app.js 中引入。处理跟博文有关的所有请求
+42. 处理添加博文的请求
+43. 
 
 ## Github
 1. 创建 node-blog-demo 项目
