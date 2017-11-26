@@ -10,6 +10,9 @@
 7. 创建文件 views/default.html，项目的首页，有登录链接和注册链接
 8. 创建文件 views/sign-in.html，views/sign-up.html，含有登录和注册的表单
 9. 安装 modules: express, mysql, body-parser，根目录下执行命令 cmd: cnmp i -S express mysql body-parser
+10. 修改 app.js 文件，创建简单的服务器
+11. 启动服务，根目录下 cmd: supervisor app[.js]
+12. 配置首页的路由，修改 app.js 文件，app.get('/', (req, res){});
 
 
 ## Github
