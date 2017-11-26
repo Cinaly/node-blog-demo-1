@@ -18,15 +18,15 @@ let app = express();
 // 配置中间件
 app.use(bodyParser.urlencoded({extended: true}));
 
-// 根目录路由
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '/views/default.html'));
-});
-
 // 创建数据库连接池
 let pool = mysql.createPool({
     // connectionlimit: 10, // default value
     user: 'root'
+});
+
+// 根目录路由
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '/views/default.html'));
 });
 
 // 注册页链接路由
@@ -58,6 +58,7 @@ app.post('/signUp', (req, res) => {
     });
 });
 
+// 登录请求的路由
 app.post('/signIn', (req, res) => {
     let username = req.body.username;
     let password = req.body.password;
@@ -76,4 +77,5 @@ app.post('/signIn', (req, res) => {
     });
 });
 
+// 端口
 app.listen(80);
