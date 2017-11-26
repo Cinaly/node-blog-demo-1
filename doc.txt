@@ -1,11 +1,15 @@
 ## Node.js Blog Projcet
 1. 创建 node-blog-demo 项目
 2. 创建 .gitignore
+	2.1 忽略 .idea
+	2.2 忽略 node_modules
 3. 创建 README.md 
 4. 创建 package.json，根目录下执行 cmd: npm init，修改 main: app.js
 5. 创建 /app.js 文件
 6. 创建目录 views
 7. 创建文件 views/default.html，项目的首页，有登录链接和注册链接
+8. 创建文件 views/sign-in.html，views/sign-up.html，含有登录和注册的表单
+9. 安装 modules: express, mysql, body-parser，根目录下执行命令 cmd: cnmp i -S express mysql body-parser
 
 
 ## Github
