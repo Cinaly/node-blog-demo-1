@@ -11,6 +11,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const ejs = require('ejs');
+const session = require('express-session');
 
 let app = express();
 
@@ -18,6 +19,11 @@ let app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 app.engine('.html', ejs.__express);
 app.set('view engine', 'html');
+app.use(session({
+    secret: 'blog',
+    resave: true,
+    saveUninitialized: false
+}));
 
 require('./routes/default')(app);
 require('./routes/user')(app);

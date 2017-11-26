@@ -41,6 +41,12 @@
 32. 返回页面的方式改为：res.render('', {message:''});\
 33. 页面跳转改为 res.render() 方式
 34. 重构，创建路由目录 routes
+33. 使用 express session，安装项目依赖，cmd: cnpm i -S express-session
+34. app.js 中引入 express-session
+35. app.js 中设置 session 中间件
+36. 使用 session：req.session.key = value;
+37. 注销，修改 index.html，添加注销链接
+38. 修改 user.js，处理注销的 get 请求：req.session.destroy();
 
 ## Github
 1. 创建 node-blog-demo 项目

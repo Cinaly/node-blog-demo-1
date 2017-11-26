@@ -15,3 +15,5 @@ CREATE TABLE blog.user (
 
 SELECT *
 FROM blog.user;
+
+TRUNCATE blog.user;

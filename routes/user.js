@@ -30,17 +30,17 @@ module.exports = function (app) {
             connection.query(sql, [username], (err, results, fields) => {
                 if (results.length === 1) {
                     res.render('sign-up', {message: 'Username already exist.'});
-                } else {
-                    sql = 'INSERT INTO blog.user VALUE(NULL, ?, ?)';
-                    connection.query(sql, [username, encryptedPassword], (err, results, fields) => {
-                        if (err) throw err;
-                        if (results.affectedRows === 1) {
-                            res.render('sign-in', {message: 'Sign up successful, sign in please.'});
-                        } else {
-                            res.render('sign-up', {message: 'Error.'});
-                        }
-                    });
+                    res.end();
                 }
+                sql = 'INSERT INTO blog.user VALUE(NULL, ?, ?)';
+                connection.query(sql, [username, encryptedPassword], (err, results, fields) => {
+                    if (err) throw err;
+                    if (results.affectedRows === 1) {
+                        res.render('sign-in', {message: 'Sign up successful, sign in please.'});
+                    } else {
+                        res.render('sign-up', {message: 'Error.'});
+                    }
+                });
             });
             connection.release();
         });
@@ -57,9 +57,10 @@ module.exports = function (app) {
                 if (err) throw err;
                 if (results.length === 1) {
                     let encryptedPassword = results[0].password;
-                    console.log(encryptedPassword);
                     if (bcrypt.compareSync(password, encryptedPassword)) {
-                        res.render('index', {});
+                        req.session.username = results[0].username;
+                        req.session.userId = results[0].id;
+                        res.render('index', {session: req.session});
                     } else {
                         res.render('sign-in', {message: 'Invalid username or password.'})
                     }
@@ -69,5 +70,10 @@ module.exports = function (app) {
             });
             connection.release();
         });
+    });
+
+    app.get('/logout', (req, res) => {
+        req.session.destroy();
+        res.redirect('/'); // 从定向到 app.get('/',...);
     });
 };
