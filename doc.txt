@@ -1,0 +1,4 @@
+1. 创建 node-blog-demo 项目
+2. 创建 .gitignore
+3. 创建 README.md 
+4. 创建 package.json，根目录下执行 cmd: npm init，修改 main: app.js
