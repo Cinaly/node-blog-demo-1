@@ -44,7 +44,7 @@ app.get('/sign-up', (req, res) => {
 
 // 登录页链接路由
 app.get('/sign-in', (req, res) => {
-    res.sendFile(path.join(__dirname, '/views/sign-in.html'));
+    res.render('sign-in', {message: null});
 });
 
 // 注册请求的路由
@@ -64,9 +64,9 @@ app.post('/signUp', (req, res) => {
                 connection.query(sql, [username, encryptedPassword], (err, results, fields) => {
                     if (err) throw err;
                     if (results.affectedRows === 1) {
-                        res.sendFile(path.join(__dirname, '/views/sign-in.html'));
+                        res.render('sign-in', {message: 'Sign up successful, sign in please.'});
                     } else {
-                        res.sendFile(path.join(__dirname, '/views/sign-up.html'));
+                        res.render('sign-up', {message: 'Error.'});
                     }
                 });
             }
@@ -90,10 +90,10 @@ app.post('/signIn', (req, res) => {
                 if (bcrypt.compareSync(password, encryptedPassword)) {
                     res.sendFile(path.join(__dirname, '/views/index.html'));
                 } else {
-                    res.sendFile(path.join(__dirname, '/views/sign-in.html'));
+                    res.render('sign-in', {message: 'Invalid username or password.'})
                 }
             } else {
-                res.sendFile(path.join(__dirname, '/views/sign-in.html'));
+                    res.render('sign-in', {message: 'Invalid username or password.'})
             }
         });
         connection.release();
