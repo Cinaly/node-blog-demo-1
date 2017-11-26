@@ -12,7 +12,22 @@
 9. 安装 modules: express, mysql, body-parser，根目录下执行命令 cmd: cnmp i -S express mysql body-parser
 10. 修改 app.js 文件，创建简单的服务器
 11. 启动服务，根目录下 cmd: supervisor app[.js]
-12. 配置首页的路由，修改 app.js 文件，app.get('/', (req, res){});
+12. 引入核心模块 path
+13. 配置首页的路由，修改 app.js 文件，app.get('/', (req, res){});
+14. 配置注册页链接的路由，修改 app.js 文件，app.get('/sign-up', (req, res){});
+15. 配置注册请求路由，修改 app.js 文件，app.post('/signUp',...)
+16. 引入 body-parser，配置 body-parser 中间件，获取表单信息：req.body.username; req.body.password
+17. 引入 mysql，创建连接池 pool
+18. 创建文件 sql/db.sql 建库: blog 建表: user id;username;password 
+19. 数据库处理，保存用户名和密码
+20. 返回响应，注册成功，去向 views/sign-in.html
+21. 配置登录路由
+	21.1 请求表单 action="/signIn"
+	21.2 创建路由 app.post('/signIn', ...);
+	21.3 获取表单参数
+	21.4 数据库处理，查询
+	21.5 返回响应，登录成功，去向 views/index.html
+22. 创建项目主页：views/index.html
 
 
 ## Github
