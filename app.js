@@ -12,6 +12,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
+const bcrypt = require('bcryptjs');
 
 let app = express();
 
@@ -43,6 +44,8 @@ app.get('/sign-in', (req, res) => {
 app.post('/signUp', (req, res) => {
     let username = req.body.username;
     let password = req.body.password;
+    let salt = bcrypt.genSaltSync(10); // 随机盐
+    let encryptedPassword = bcrypt.hashSync(password, salt);
     pool.getConnection((err, connection) => {
         if (err) throw err;
         let sql = 'SELECT * FROM blog.user WHERE username = ?';
@@ -51,7 +54,7 @@ app.post('/signUp', (req, res) => {
                 res.sendFile(path.join(__dirname, '/views/sign-up.html'));
             } else {
                 sql = 'INSERT INTO blog.user VALUE(NULL, ?, ?)';
-                connection.query(sql, [username, password], (err, results, fields) => {
+                connection.query(sql, [username, encryptedPassword], (err, results, fields) => {
                     if (err) throw err;
                     if (results.affectedRows === 1) {
                         res.sendFile(path.join(__dirname, '/views/sign-in.html'));
@@ -71,11 +74,17 @@ app.post('/signIn', (req, res) => {
     let password = req.body.password;
     pool.getConnection((err, connection) => {
         if (err) throw err;
-        let sql = 'SELECT * FROM blog.user WHERE username = ? AND password = ?';
+        let sql = 'SELECT * FROM blog.user WHERE username = ?';
         connection.query(sql, [username, password], (err, results, fields) => {
             if (err) throw err;
             if (results.length === 1) {
-                res.sendFile(path.join(__dirname, '/views/index.html'));
+                let encryptedPassword = results[0].password;
+                console.log(encryptedPassword);
+                if (bcrypt.compareSync(password, encryptedPassword)) {
+                    res.sendFile(path.join(__dirname, '/views/index.html'));
+                } else {
+                    res.sendFile(path.join(__dirname, '/views/sign-in.html'));
+                }
             } else {
                 res.sendFile(path.join(__dirname, '/views/sign-in.html'));
             }
