@@ -33,6 +33,14 @@
 25. 密码加密，安装项目依赖，cmd: cnpm i -S bcryptjs
 25. 注册时对明文密码加密，先生成盐，再加密后存入数据库
 26. 修改登录的业务逻辑：先根据用户名查加密后的密码，再做判断
+27. 使用模板引擎，安装项目依赖，cmd: cnpm i -S ejs，做一个示例
+28. 修改 app.js 文件，引入 EJS，配置 EJS 相关的中间件
+29. 使用模板，方法是：res.render('*.html', {key:value});
+30. 注册失败，提示用户名存在
+31. 修改 views/sign-up.html 添加提示信息变量
+32. 返回页面的方式改为：res.render('', {message:''});\
+33. 页面跳转改为 res.render() 方式
+34. 重构，创建路由目录 routes
 
 ## Github
 1. 创建 node-blog-demo 项目
