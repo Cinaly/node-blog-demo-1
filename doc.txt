@@ -51,7 +51,8 @@
 40. 修改 views/index.html，添加发布博文的表单
 41. 创建 routes/article.js 文件，app.js 中引入。处理跟博文有关的所有请求
 42. 处理添加博文的请求
-43. 
+43. 添加查询所有博文功能，在 index.html 上显示博文列表
+44. Mysql属性 dateStrings: date，显示时间的格式
 
 ## Github
 1. 创建 node-blog-demo 项目

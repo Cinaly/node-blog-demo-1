@@ -60,7 +60,7 @@ module.exports = function (app) {
                     if (bcrypt.compareSync(password, encryptedPassword)) {
                         req.session.username = results[0].username;
                         req.session.userId = results[0].id;
-                        res.render('index', {session: req.session, message: null});
+                        res.redirect('/article/list');
                     } else {
                         res.render('sign-in', {message: 'Invalid username or password.'})
                     }

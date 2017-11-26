@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>index page</title>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/index.js"></script>
 </head>
 <body>
 <h1>INDEX</h1>
@@ -18,5 +20,30 @@
     <input type="submit" value="PUBLISH">
 </form>
 <%= message%>
+<hr>
+<h3>ARTICLE LIST</h3>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>TITLE</th>
+        <th>PUBLISH TIME</th>
+        <th>CONTENT</th>
+        <th>PHOTO</th>
+        <th>USER ID</th>
+        <th colspan="2">OPERATION</th>
+    </tr>
+    <% for(let article of articles) {%>
+    <tr>
+        <td><%= article.id%></td>
+        <td><%= article.title%></td>
+        <td><%= article.time%></td>
+        <td><%= article.content%></td>
+        <td><%= article.photo%></td>
+        <td><%= article.userId%></td>
+        <td><a href="">EDIT</a></td>
+        <td><a href="">REMOVE</a></td>
+    </tr>
+    <%}%>
+</table>
 </body>
 </html>

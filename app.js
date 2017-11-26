@@ -12,6 +12,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const ejs = require('ejs');
 const session = require('express-session');
+const path = require('path');
 
 let app = express();
 
@@ -24,6 +25,7 @@ app.use(session({
     resave: true,
     saveUninitialized: false
 }));
+app.use(express.static(path.join(__dirname, '/public')));
 
 require('./routes/default')(app);
 require('./routes/user')(app);
