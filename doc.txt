@@ -38,7 +38,7 @@
 29. 使用模板，方法是：res.render('*.html', {key:value});
 30. 注册失败，提示用户名存在
 31. 修改 views/sign-up.html 添加提示信息变量
-32. 返回页面的方式改为：res.render('', {message:''});\
+32. 返回页面的方式改为：res.render('', {message:''});
 33. 页面跳转改为 res.render() 方式
 34. 重构，创建路由目录 routes
 33. 使用 express session，安装项目依赖，cmd: cnpm i -S express-session
