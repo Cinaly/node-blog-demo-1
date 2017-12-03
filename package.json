@@ -1,0 +1,25 @@
+{
+  "name": "blog-demo",
+  "version": "1.0.0",
+  "description": "Node.js Express EJS Based Blog Project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thu/node-blog-demo.git"
+  },
+  "keywords": [
+    "Node.js",
+    "Express",
+    "EJS",
+    "Blog"
+  ],
+  "author": "mingfei.net@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thu/node-blog-demo/issues"
+  },
+  "homepage": "https://github.com/thu/node-blog-demo#readme"
+}
